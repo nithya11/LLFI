@@ -1,7 +1,6 @@
 kernelOption:
     - forceRun
 
-timeOut: 1000
 
 compileOption:
     instSelMethod: custominstselector/insttype
@@ -37,7 +36,9 @@ runOption:
         fi_reg_index: 3
         fi_bit: 32
         fi_reg: 2
+        fi_random_seed: 10 # Allows the random seed to be set to specific value
         verbose: True/False # prints return code summary at end of injection
+        timeOut: 1000
 
     - run:
         numOfRuns: 5
@@ -45,5 +46,5 @@ runOption:
         fi_cycle: 342343
         fi_index: 23
         fi_reg_index: 5
-
+        timeOut: 100
 

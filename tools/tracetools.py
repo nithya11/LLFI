@@ -353,7 +353,9 @@ class diffLine:
       elements[4] == "Value:"), "DiffLine constructor called incorrectly"
     self.ID = int(elements[1])
     self.OPCode = str(elements[3])
-    self.Value = str(elements[5])
+    self.Value = 0
+    if (len(elements) > 5):
+    	self.Value = elements[5]
 
   def _print(self):
     print("ID:",self.ID, "OPCode", self.OPCode, "Value:", self.Value)
@@ -441,6 +443,7 @@ class faultReport:
       if "Diff@" in self.diffs[i] and "Pre  Diff" in self.diffs[i+1]:
         csplit = self.diffs[i+2].split()
         edgeStart = int(self.diffs[i+1].split()[3])
+        edgeEnd = None
         if csplit[5] != "None":
           edgeEnd = int(csplit[5])
           if (i+3 < len(self.diffs)):

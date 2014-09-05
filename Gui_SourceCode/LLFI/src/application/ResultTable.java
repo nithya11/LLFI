@@ -2,6 +2,10 @@ package application;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
+import javafx.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
 
 public class ResultTable {
 
@@ -10,21 +14,25 @@ public class ResultTable {
     
     SimpleStringProperty FaultInjectionType;
     SimpleIntegerProperty index;
+    SimpleStringProperty line;
     SimpleIntegerProperty cycle;
     
     SimpleIntegerProperty bit;
     SimpleStringProperty sdc;
     SimpleStringProperty status;
     SimpleStringProperty result;
+    SimpleBooleanProperty trace;
 
 
 
-    public ResultTable(int noOfRuns,String FaultInjectionType,int index,int cycle,int bit,
-    		String sdc,String status,String result) {
+
+    public ResultTable(int noOfRuns,String FaultInjectionType,int index,String line,int cycle,int bit,
+    		String sdc,String status,String result,Boolean trace) {
         this.noOfRuns = new SimpleIntegerProperty(noOfRuns);
         
         this.FaultInjectionType = new SimpleStringProperty(FaultInjectionType);
         this.index = new SimpleIntegerProperty(index);
+	this.line = new SimpleStringProperty(line);
         this.cycle = new SimpleIntegerProperty(cycle);
         
         
@@ -32,8 +40,18 @@ public class ResultTable {
         this.sdc = new SimpleStringProperty(sdc);
         this.status = new SimpleStringProperty(status);
         this.result = new SimpleStringProperty(result);
-       
-    } 
+        this.trace = new SimpleBooleanProperty(trace);
+
+//         this.trace.addListener(new ChangeListener<Boolean>() {
+
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> ov, Boolean oldval, Boolean newval) {
+//                System.out.println("The check Box is: " + newval);
+//            }
+//        });
+
+    }
+    
 
     public Integer getNoOfRuns() {
 		return noOfRuns.get();
@@ -60,7 +78,13 @@ public class ResultTable {
 	public void setIndex(Integer n) {
 		this.index.set(n);
 	}
+	public String getLine() {
+		return line.get();
+	}
 
+	public void setLine(String n) {
+		this.line.set(n);
+	}
 	public Integer getCycle() {
 		return cycle.get();
 	}
@@ -98,7 +122,19 @@ public class ResultTable {
 	}
 
 	public void setResult(String e) {
-		this.result.set(e);;
+		this.result.set(e);
+	}
+	public SimpleBooleanProperty traceProperty() 
+	{
+	return trace;
+	}
+
+	public Boolean getTrace() {
+		return trace.get();
+	}
+
+	public void setTrace(Boolean e) {
+		this.trace.set(e);
 	}
 
 	
